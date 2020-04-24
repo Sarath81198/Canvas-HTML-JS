@@ -55,7 +55,6 @@ function mouseRelease(e) {
 
     if (!restoreCheck) {
         ctx.fillStyle = "yellow"
-        console.log(1)
     }
 
     ctx.fillRect(startX, startY, mouseX - startX, mouseY - startY)
@@ -64,8 +63,6 @@ function mouseRelease(e) {
     // Add rectangle
     addRectangleToArray(rectangleId, startX, startY, mouseX - startX, mouseY - startY)
     ctx.save()
-    // document.getElementById("undoDisplay").style.display = ""
-    // document.getElementById("undoDisplay").innerHTML = "<button id='undo' onClick='undoRectangle("+rectangleId+")'>Undo</button><br><br>"
 
     // Increment rectangleId
     rectangleId++
@@ -75,27 +72,8 @@ function addRectangleToArray(id, startX, startY, width, height) {
     var rectParams = [startX, startY, width, height]
     rectangles.push(rectParams)
 
-    console.log(rectangles)
     document.getElementById("rectanglesDisplay").innerHTML += "<p id ='" + id + "'>Rectangle " + id + " <button id='deleteBtn" + id + "' onclick='deleteRectangle(" + id + ")'>Delete</button></p><br>"
 }
-
-// function undoRectangle(contentId){
-//     startX = rectangles[0][0]
-//     startY = rectangles[0][1]
-//     width = rectangles[0][2]
-//     height = rectangles[0][3]
-
-//     ctx.clearRect(startX, startY, width, height);
-//     console.log(startX)
-//     rectangles.shift()
-
-
-
-//     document.getElementById(contentId).style.display = "none"
-//     document.getElementById("undoDisplay").style.display = "none"
-
-
-// }
 
 function deleteRectangle(rectangleId) {
     startX = rectangles[rectangleId - 1][0]
@@ -109,7 +87,6 @@ function deleteRectangle(rectangleId) {
     btnId = rectangleId
 
     deleteBtnId = btnType.concat(btnId)
-    console.log(deleteBtnId)
 
     document.getElementById(deleteBtnId).innerHTML = "Deleted"
     document.getElementById(deleteBtnId).disabled = true
@@ -119,10 +96,6 @@ function deleteRectangle(rectangleId) {
     rectangles[rectangleId - 1].pop()
     rectangles[rectangleId - 1].pop()
     rectangles[rectangleId - 1].pop()
-
-
-
-    console.log(rectangles);
 }
 
 // MouseEventListeners
